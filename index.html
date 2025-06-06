@@ -3,655 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[FSC] Bồi Dưỡng HSG Lịch Sử - Kho Tài Liệu</title>
+    <title>Trang Chủ - Tư Liệu Lịch Sử HSG</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Import Font từ Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;700&display=swap');
-
-        /* --- BIẾN MÀU CHỦ ĐẠO --- */
-        :root {
-            --mau-xanh-duong: #005A9C; /* Blue */
-            --mau-xanh-la: #28a745;     /* Green */
-            --mau-cam: #f57c00;        /* Orange */
-            --mau-nen: #f4f7f6;
-            --mau-chu: #333;
-            --mau-trang: #ffffff;
-            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            --box-shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        /* --- THIẾT LẬP CHUNG & RESET CSS --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Be Vietnam Pro', sans-serif;
-            background-color: var(--mau-nen);
-            color: var(--mau-chu);
-            line-height: 1.6;
-            overflow-x: hidden;
-            animation: fadeInPage 1s ease-in-out;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth; /* Enables smooth scrolling */
         }
-
-        /* --- KEYFRAMES CHO ANIMATION --- */
-        @keyframes fadeInPage {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .hero-bg {
+            background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.4)), url('https://gddt.edu.vn/media/6/2023/05/lich-su-viet-nam.jpg');
+            background-size: cover;
+            background-position: center;
         }
-
-        @keyframes slideInDownNav {
-            from { transform: translateY(-100%); opacity: 0;}
-            to { transform: translateY(0); opacity: 1;}
+        .menu-placeholder:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
-
-        @keyframes slideInUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        @keyframes zoomIn {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(245, 124, 0, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(245, 124, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(245, 124, 0, 0); }
-        }
-        
-        /* Lớp để kích hoạt animation khi cuộn */
-        .animate-on-scroll {
-            opacity: 0;
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .animate-on-scroll.slide-in-up {
-            transform: translateY(40px);
-        }
-        .animate-on-scroll.slide-in-left {
-            transform: translateX(-40px);
-        }
-        .animate-on-scroll.slide-in-right {
-            transform: translateX(40px);
-        }
-        .animate-on-scroll.zoom-in {
-            transform: scale(0.95);
-        }
-
-        .animate-on-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0) translateX(0) scale(1);
-        }
-
-
-        /* --- CÁC LỚP TIỆN ÍCH --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem; /* Adjusted padding for sections */
-        }
-        
-        section { /* Added padding for sections */
-             padding-top: 4rem;
-             padding-bottom: 4rem;
-        }
-
-        h1, h2, h3 {
-            color: var(--mau-xanh-duong);
-            font-weight: 700;
-            line-height: 1.2;
-        }
-        
-        h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-        h2::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background-color: var(--mau-cam);
-            margin: 0.5rem auto 0;
-            border-radius: 2px;
-            transition: width 0.3s ease-in-out;
-        }
-        h2:hover::after {
-            width: 120px;
-        }
-
-        /* --- HEADER & NAVIGATION --- */
-        .header {
-            background: var(--mau-xanh-duong);
-            color: var(--mau-trang);
-            padding: 1rem 0;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            position: sticky; /* Make header sticky */
-            top: 0;
-            z-index: 1000;
-            animation: slideInDownNav 0.8s ease-out;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        .header .logo {
-            font-size: 1.6rem; /* Adjusted logo size */
-            font-weight: 700;
-            text-decoration: none;
-            color: var(--mau-trang);
-        }
-
-        .header .logo span {
-            color: var(--mau-cam);
-        }
-
-        .main-nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
-
-        .main-nav ul li {
-            margin-left: 25px; /* Spacing between nav items */
-            position: relative; /* For dropdown positioning */
-        }
-
-        .main-nav ul li a {
-            color: var(--mau-trang);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 10px 0;
-            transition: color 0.3s ease, border-bottom-color 0.3s ease;
-            border-bottom: 2px solid transparent;
-        }
-
-        .main-nav ul li a:hover,
-        .main-nav ul li a.active {
-            color: var(--mau-cam);
-            border-bottom-color: var(--mau-cam);
-        }
-        
-        /* Dropdown Menu */
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: var(--mau-trang);
-            min-width: 220px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 5px;
-            top: 100%; /* Position below the parent */
-            left: 0;
-            animation: zoomIn 0.3s ease-out;
-        }
-
-        .dropdown-content a {
-            color: var(--mau-chu);
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-weight: 400; /* Normal weight for dropdown items */
-            border-bottom: none; /* Remove bottom border from main nav style */
-        }
-
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-            color: var(--mau-cam); /* Change text color on hover */
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        /* Mobile Menu Toggle (Basic - for future enhancement) */
-        .menu-toggle {
-            display: none; /* Hidden on desktop */
-            font-size: 1.5rem;
-            color: var(--mau-trang);
-            cursor: pointer;
-        }
-
-
-        /* --- HERO SECTION (GIỚI THIỆU CHÍNH) --- */
-        .hero {
-            background: linear-gradient(rgba(0, 90, 156, 0.85), rgba(0, 90, 156, 0.85)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
-            color: var(--mau-trang);
-            text-align: center;
-            /* padding: 6rem 1.5rem; Removed padding, using section's default */
-        }
-
-        .hero-content {
-            animation: slideInUp 1s ease-out 0.3s backwards;
-        }
-
-        .hero h1 {
-            font-size: 3.2rem; /* Slightly larger */
-            color: var(--mau-trang);
-            margin-bottom: 1rem;
-            animation: slideInUp 1s ease-out 0.5s backwards;
-        }
-
-        .hero p {
-            font-size: 1.25rem; /* Slightly larger */
-            max-width: 750px;
-            margin: 0 auto 2.5rem auto;
-            font-weight: 300;
-            animation: slideInUp 1s ease-out 0.7s backwards;
-        }
-
-        .hero .btn {
-            background-color: var(--mau-cam);
-            color: var(--mau-trang);
-            padding: 14px 35px; /* Slightly larger */
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.15rem; /* Slightly larger */
-            transition: all 0.3s ease;
-            box-shadow: var(--box-shadow);
-            animation: zoomIn 1s ease-out 0.9s backwards;
-        }
-
-        .hero .btn:hover {
-            background-color: #e65100; /* Màu cam đậm hơn */
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: var(--box-shadow-hover);
-            animation: pulse 1.5s infinite;
-        }
-
-        /* --- PHẦN GIỚI THIỆU --- */
-        #gioi-thieu {
-            background: var(--mau-trang);
-            /* padding: 4rem 1.5rem; */
-        }
-
-        #gioi-thieu .content {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 1.1rem;
-        }
-        
-        #gioi-thieu .content p {
-            margin-bottom: 1rem;
-        }
-
-
-        /* --- KHO TÀI LIỆU --- */
-        #tai-lieu {
-            /* padding: 4rem 1.5rem; */
-        }
-
-        .tai-lieu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem; /* Increased gap */
-            margin-top: 3rem;
-        }
-
-        .tai-lieu-card {
-            background: var(--mau-trang);
-            border-radius: 12px; /* More rounded */
-            box-shadow: var(--box-shadow);
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smoother transition */
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .tai-lieu-card:hover {
-            transform: translateY(-12px) scale(1.03); /* More pronounced hover */
-            box-shadow: var(--box-shadow-hover);
-        }
-
-        .card-header {
-            background-color: var(--mau-xanh-la);
-            color: var(--mau-trang);
-            padding: 1.2rem; /* Increased padding */
-            font-size: 1.35rem; /* Slightly larger */
-            font-weight: 500;
-            border-bottom: 3px solid #1e7e34; /* Darker green border */
-        }
-
-        .card-body {
-            padding: 1.7rem; /* Increased padding */
-            flex-grow: 1;
-        }
-        
-        .card-body p {
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-        }
-
-        .card-footer {
-            padding: 0 1.7rem 1.7rem 1.7rem; /* Increased padding */
-        }
-
-        .btn-download {
-            display: inline-block;
-            background-color: var(--mau-xanh-duong);
-            color: var(--mau-trang);
-            padding: 12px 28px; /* Adjusted padding */
-            text-decoration: none;
-            border-radius: 8px; /* More rounded */
-            font-weight: 500;
-            transition: all 0.3s ease;
-            width: 100%;
-            text-align: center;
-            border: 2px solid transparent;
-        }
-
-        .btn-download:hover {
-            background-color: var(--mau-trang);
-            color: var(--mau-xanh-duong);
-            border: 2px solid var(--mau-xanh-duong);
-            transform: scale(1.05);
-        }
-        
-        /* --- FOOTER --- */
-        .footer {
-            background-color: #2c3e50;
-            color: #bdc3c7;
-            text-align: center;
-            padding: 2.5rem 1rem; /* Increased padding */
-            margin-top: 3rem;
-        }
-
-        .footer p {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer span {
-            color: var(--mau-cam);
-            font-weight: bold;
-        }
-
-        /* --- RESPONSIVE DESIGN --- */
-        @media (max-width: 992px) { /* Tablet breakpoint */
-             .header-content {
-                flex-direction: column;
-             }
-             .main-nav ul {
-                margin-top: 1rem;
-                flex-wrap: wrap; /* Allow nav items to wrap */
-                justify-content: center;
-             }
-             .main-nav ul li {
-                margin: 5px 10px; /* Adjust spacing for wrapped items */
-             }
-        }
-
-
-        @media (max-width: 768px) { /* Mobile breakpoint */
-            h1 { font-size: 2.5rem; }
-            .hero h1 { font-size: 2.8rem; }
-            h2 { font-size: 2rem; }
-            .hero { padding-top: 4rem; padding-bottom: 4rem; } /* Restore hero padding for smaller screens if needed */
-            
-            .menu-toggle {
-                display: block; /* Show toggle on mobile */
-                position: absolute; /* Position it within header */
-                right: 1.5rem;
-                top: 50%;
-                transform: translateY(-50%);
-            }
-
-            .main-nav {
-                /* Basic mobile menu styling - can be enhanced with JS */
-                /* display: none; */ /* Initially hide for JS toggle */
-                width: 100%;
-            }
-            .main-nav.active {
-                display: block; /* Show when active */
-            }
-            .main-nav ul {
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-                margin-top: 1rem;
-            }
-            .main-nav ul li {
-                margin: 10px 0; /* Vertical spacing for mobile nav items */
-                width: 100%;
-                text-align: center;
-            }
-            .dropdown-content { /* Adjust dropdown for mobile */
-                position: static; /* No absolute positioning */
-                box-shadow: none;
-                background-color: rgba(255,255,255,0.1); /* Slightly transparent */
-            }
-            .dropdown-content a {
-                padding: 10px;
-                color: var(--mau-trang);
-            }
-            .dropdown-content a:hover {
-                background-color: var(--mau-cam);
-            }
-            .header .logo {
-                margin-bottom: 0.5rem; /* Space below logo if nav stacks */
-            }
-            .header-content {
-                 padding-bottom: 0.5rem; /* Add padding if nav wraps */
-            }
-        }
-
     </style>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
 
-    <!-- ======== HEADER ======== -->
-    <header class="header">
-        <div class="header-content">
-            <a href="#" class="logo">[FSC] <span>Bồi Dưỡng HSG Lịch Sử</span></a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#" class="active">Trang Chủ</a></li>
-                    <li><a href="#gioi-thieu">Giới Thiệu</a></li>
-                    <li class="dropdown">
-                        <a href="#tai-lieu">Kho Tài Liệu &#9662;</a> <!-- Added arrow -->
-                        <div class="dropdown-content">
-                            <a href="#tai-lieu">Lịch Sử Thế Giới</a>
-                            <a href="#tai-lieu">Lịch Sử Việt Nam</a>
-                            <a href="#tai-lieu">Đề Thi Thử</a>
-                            <a href="#tai-lieu">Phương Pháp Học</a>
-                            <a href="#tai-lieu">Tài Liệu Mở Rộng</a>
-                        </div>
-                    </li>
-                    <li><a href="#lien-he">Liên Hệ</a></li> <!-- Placeholder Link -->
-                </ul>
+    <!-- Header -->
+    <header class="bg-blue-600 text-white shadow-md sticky top-0 z-50"> 
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">📚 Tư Liệu Lịch Sử HSG</h1>
+            <nav class="space-x-2"> <!-- Added space-x-2 for spacing between menu items -->
+                <a href="#tai-lieu" class="px-3 py-2 rounded hover:bg-blue-700 transition duration-300">Thư Viện Tài Liệu</a>
+                <a href="#gioi-thieu" class="px-3 py-2 rounded hover:bg-blue-700 transition duration-300">Giới Thiệu</a>
+                <a href="#bai-tap" class="px-3 py-2 rounded hover:bg-blue-700 transition duration-300">Làm Bài Tập</a>
+                <!--  More navigation links can be added here later -->
             </nav>
-            <div class="menu-toggle">&#9776;</div> <!-- Hamburger Icon -->
         </div>
     </header>
 
-    <main>
-        <!-- ======== HERO SECTION ======== -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Kho Tàng Kiến Thức Lịch Sử Vững Bền</h1>
-                    <p>Nền tảng chia sẻ, lưu trữ và phát triển nguồn tài liệu chuyên sâu, chất lượng cao, đồng hành cùng đội tuyển Học Sinh Giỏi môn Lịch Sử của FSC trên hành trình chinh phục tri thức.</p>
-                    <a href="#tai-lieu" class="btn">Khám Phá Kho Tài Liệu</a>
-                </div>
+    <!-- Hero Section -->
+    <main class="flex-grow">
+        <section class="hero-bg text-white py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">Chào Mừng Đến Với Kho Tàng Tri Thức Lịch Sử</h2>
+                <p class="text-lg md:text-xl mb-8 drop-shadow-md">Nguồn tài liệu chuyên sâu dành cho học sinh giỏi Lịch Sử.</p>
+                <a href="#tai-lieu" 
+                   class="bg-orange-500 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-orange-600 transition duration-300 ease-in-out text-lg">
+                   Khám Phá Ngay
+                </a>
             </div>
         </section>
 
-        <!-- ======== GIỚI THIỆU ======== -->
-        <section id="gioi-thieu">
-            <div class="container">
-                <h2 class="animate-on-scroll slide-in-up">Về [FSC] Bồi Dưỡng HSG Lịch Sử</h2>
-                <div class="content animate-on-scroll zoom-in">
-                    <p>
-                        Chào mừng bạn đến với không gian học tập và phát triển dành riêng cho các tài năng Lịch sử của <strong>[FSC] Bồi Dưỡng Đội Tuyển Học Sinh Giỏi</strong>. Với sứ mệnh ươm mầm và chắp cánh cho những đam mê Sử học, chúng tôi cam kết xây dựng một cộng đồng học thuật vững mạnh.
-                    </p>
-                    <p>
-                        Tại đây, các thành viên sẽ được tiếp cận với nguồn tài liệu phong phú, bao gồm các chuyên đề chuyên sâu, bộ sưu tập đề thi thử cập nhật, và những phương pháp học tập tiên tiến, được biên soạn và chọn lọc kỹ lưỡng bởi đội ngũ chuyên môn. Mục tiêu của chúng tôi là trang bị cho bạn đầy đủ kiến thức và kỹ năng để tự tin chinh phục những đỉnh cao trong các kỳ thi Học Sinh Giỏi Lịch Sử.
-                    </p>
+        <!-- Placeholder for Document Menu Section -->
+        <section id="tai-lieu" class="py-16 bg-gray-50 pt-24"> 
+            <div class="container mx-auto px-6">
+                <h3 class="text-3xl font-bold text-center mb-12 text-green-700">Cổng Thông Tin Tài Liệu</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Example: Future Menu Item -->
+                    <div class="menu-placeholder bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out flex flex-col items-center text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500 mb-4"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                        <h4 class="text-xl font-semibold mb-2 text-green-700">Tài Liệu Sắp Ra Mắt</h4>
+                        <p class="text-gray-600">Khu vực này sẽ sớm được cập nhật với các chuyên mục tài liệu đa dạng. Chúng tôi đang nỗ lực để mang đến những nội dung chất lượng nhất!</p>
+                        <!-- <a href="#" class="mt-4 text-green-600 hover:text-green-800 font-semibold">Tìm hiểu thêm &rarr;</a> -->
+                    </div>
+
+                    <!-- Add more placeholders or actual menu links here as the site develops -->
+                     <div class="menu-placeholder bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out flex flex-col items-center text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500 mb-4"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                        <h4 class="text-xl font-semibold mb-2 text-green-700">Dòng Thời Gian Lịch Sử</h4>
+                        <p class="text-gray-600">Khám phá các sự kiện quan trọng qua các mốc thời gian trực quan và dễ hiểu.</p>
+                    </div>
+
+                     <div class="menu-placeholder bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out flex flex-col items-center text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500 mb-4"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20z"/><path d="M2 12h20"/></svg>
+                        <h4 class="text-xl font-semibold mb-2 text-green-700">Bản Đồ Lịch Sử</h4>
+                        <p class="text-gray-600">Theo dõi diễn biến các sự kiện lịch sử trên không gian địa lý tương tác.</p>
+                    </div>
                 </div>
+                 <p class="text-center mt-12 text-gray-600">
+                    <em>Các chuyên mục tài liệu chi tiết sẽ được chúng tôi cập nhật và mở rộng trong thời gian tới.</em>
+                </p>
             </div>
         </section>
 
-        <!-- ======== KHO TÀI LIỆU ======== -->
-        <section id="tai-lieu">
-            <div class="container">
-                <h2 class="animate-on-scroll slide-in-up">Kho Tài Liệu Chọn Lọc</h2>
-                <div class="tai-lieu-grid">
-
-                    <!-- Mẫu Tài Liệu 1 -->
-                    <div class="tai-lieu-card animate-on-scroll slide-in-up">
-                        <div class="card-header">Chuyên Đề Lịch Sử Thế Giới</div>
-                        <div class="card-body">
-                            <p>Tổng hợp kiến thức trọng tâm, sơ đồ tư duy logic và các dạng bài tập chuyên sâu, phân tích các sự kiện then chốt của Lịch sử thế giới từ cổ đại đến đương đại.</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="btn-download">Tải Về Ngay</a>
-                        </div>
-                    </div>
-
-                    <!-- Mẫu Tài Liệu 2 -->
-                    <div class="tai-lieu-card animate-on-scroll slide-in-up">
-                        <div class="card-header">Chuyên Đề Lịch Sử Việt Nam</div>
-                        <div class="card-body">
-                            <p>Tài liệu hệ thống toàn bộ tiến trình lịch sử hào hùng của dân tộc Việt Nam qua các thời kỳ, với phân tích sâu sắc và bình luận các sự kiện quan trọng.</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="btn-download">Tải Về Ngay</a>
-                        </div>
-                    </div>
-
-                    <!-- Mẫu Tài Liệu 3 -->
-                    <div class="tai-lieu-card animate-on-scroll slide-in-up">
-                        <div class="card-header">Bộ Đề Thi Thử & Đáp Án</div>
-                        <div class="card-body">
-                            <p>Tuyển tập các bộ đề thi thử HSG từ cấp Tỉnh/Thành phố đến cấp Quốc gia qua nhiều năm, kèm theo đáp án chi tiết, thang điểm và phân tích lỗi thường gặp.</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="btn-download">Tải Về Ngay</a>
-                        </div>
-                    </div>
-
-                    <!-- Mẫu Tài Liệu 4 -->
-                    <div class="tai-lieu-card animate-on-scroll slide-in-up">
-                        <div class="card-header">Phương Pháp & Kỹ Năng Vàng</div>
-                        <div class="card-body">
-                            <p>Bí kíp và hướng dẫn chi tiết các kỹ năng làm bài thi tự luận, cách phân tích đề chính xác, lập dàn ý khoa học và sử dụng dẫn chứng lịch sử thuyết phục.</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="btn-download">Tải Về Ngay</a>
-                        </div>
-                    </div>
-                    
-                    <!-- Mẫu Tài Liệu 5 -->
-                    <div class="tai-lieu-card animate-on-scroll slide-in-up">
-                        <div class="card-header">Tài Liệu Tham Khảo Mở Rộng</div>
-                        <div class="card-body">
-                            <p>Tuyển chọn các bài viết học thuật, công trình nghiên cứu, sách chuyên khảo giúp mở rộng kiến thức nền tảng và rèn luyện tư duy phản biện Lịch sử.</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="btn-download">Tải Về Ngay</a>
-                        </div>
-                    </div>
-                    
-                    <!-- Mẫu Tài Liệu 6 -->
-                    <div class="tai-lieu-card animate-on-scroll slide-in-up">
-                        <div class="card-header">Lịch Sử Đảng CSVN & Tư Tưởng HCM</div>
-                        <div class="card-body">
-                            <p>Chuyên đề trọng yếu, hệ thống hóa các giai đoạn, sự kiện và vai trò của Đảng, cùng với những nội dung cốt lõi của tư tưởng Hồ Chí Minh trong lịch sử dân tộc.</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="btn-download">Tải Về Ngay</a>
-                        </div>
-                    </div>
-
-                </div>
+        <!-- Placeholder sections for new menu items - you can develop these later -->
+        <section id="gioi-thieu" class="py-16 bg-white pt-24">
+            <div class="container mx-auto px-6">
+                <h3 class="text-3xl font-bold text-center mb-12 text-blue-700">Giới Thiệu</h3>
+                <p class="text-lg text-gray-700 text-center">
+                    Nội dung giới thiệu về trang web, mục tiêu, đội ngũ phát triển, hoặc thông điệp chào mừng sẽ được cập nhật tại đây.
+                </p>
             </div>
         </section>
-        
-        <!-- ======== LIÊN HỆ (Placeholder) ======== -->
-        <section id="lien-he" style="background: var(--mau-trang);">
-            <div class="container">
-                <h2 class="animate-on-scroll slide-in-up">Liên Hệ Với Chúng Tôi</h2>
-                <div class="content animate-on-scroll zoom-in" style="text-align:center;">
-                    <p>Nếu bạn có bất kỳ câu hỏi hoặc đóng góp nào cho kho tài liệu, đừng ngần ngại liên hệ với ban quản trị [FSC].</p>
-                    <p>Email: <strong>lienhe.fsc.hsgsu@email.com</strong> (Đây là email ví dụ)</p>
-                    <p>Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ!</p>
-                </div>
+
+        <section id="bai-tap" class="py-16 bg-gray-50 pt-24">
+            <div class="container mx-auto px-6">
+                <h3 class="text-3xl font-bold text-center mb-12 text-orange-600">Làm Bài Tập</h3>
+                <p class="text-lg text-gray-700 text-center">
+                    Khu vực dành cho các bài tập, câu hỏi ôn luyện, hoặc các hoạt động tương tác liên quan đến kiến thức lịch sử sẽ được xây dựng ở đây.
+                </p>
             </div>
         </section>
+
     </main>
 
-    <!-- ======== FOOTER ======== -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; <span id="currentYear"></span> Bản quyền thuộc về <span>[FSC] Bồi Dưỡng Đội Tuyển Học Sinh Giỏi Lịch Sử</span>.</p>
-            <p>Kiến tạo tri thức - Vững bước tương lai - Chinh phục đỉnh cao.</p>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p>&copy; <span id="currentYear"></span> Trang Tư Liệu Lịch Sử HSG. Phát triển bởi đội ngũ tâm huyết.</p>
+            <p class="text-sm mt-1">Hỗ trợ học tập và nghiên cứu Lịch Sử hiệu quả.</p>
         </div>
     </footer>
 
     <script>
-        // JavaScript để tự động cập nhật năm hiện tại trong footer
+        // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // JavaScript cho hiệu ứng animation khi cuộn trang (Intersection Observer)
-        const animatedElements = document.querySelectorAll('.animate-on-scroll');
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    // Optional: unobserve after animation to save resources
-                    // observer.unobserve(entry.target); 
-                } else {
-                    // Optional: remove class if you want animation to replay on scroll up
-                    // entry.target.classList.remove('is-visible'); 
-                }
-            });
-        }, {
-            threshold: 0.1 // Trigger when 10% of the element is visible
-        });
-
-        animatedElements.forEach(el => {
-            observer.observe(el);
-        });
-
-        // Basic Mobile Menu Toggle (Optional: Enhance with more features)
-        const menuToggle = document.querySelector('.menu-toggle');
-        const mainNav = document.querySelector('.main-nav');
-
-        if (menuToggle && mainNav) {
-            menuToggle.addEventListener('click', () => {
-                mainNav.classList.toggle('active');
-            });
-        }
-
     </script>
 
 </body>
 </html>
-```
-
-Hy vọng bản cập nhật này sẽ làm trang web của bạn thêm phần sinh động và chuyên nghiệp! Nếu bạn muốn tùy chỉnh thêm bất kỳ phần nào, đừng ngần ngại cho tôi bi
